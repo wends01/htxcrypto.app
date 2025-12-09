@@ -3,770 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="description" content="HTX - Register, trade, and earn unlimited USDT" />
+  <meta name="description" content="HTX Crypto - Trade, Stake and Earn" />
   <meta name="theme-color" content="#00AFFF" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  
-  <!-- Telegram Web App -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  
-  <!-- Google Fonts -->
+  <title>HTX Crypto</title>
+
+  <!-- Local fonts/css (copied css2 file and local font folder under /s) -->
   <link rel="stylesheet" href="css2" />
-  
-  <!-- Vue.js & Vite Assets - CSS -->
+
+  <!-- Link ALL local CSS assets (order: base first, then larger bundles). No external files used. -->
   <link rel="stylesheet" href="assets/default-CWwjCK04.css" />
   <link rel="stylesheet" href="assets/index-C0qTE-sG.css" />
   <link rel="stylesheet" href="assets/index-CjzQ1CdB.css" />
   <link rel="stylesheet" href="assets/index-is9UznB4.css" />
-  
-  <!-- External Analytics & Tracking -->
-  <script src="scevent.min.js"></script>
-  <script src="uwt.js"></script>
-  <script src="beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"></script>
-  <script crossorigin="anonymous" src="https://same.new/inject.js"></script>
-  
-  <title>HTX - Trade Crypto Only on HTX</title>
-  
+
+  <!-- Page-specific styles to match screenshot; placed LAST to override bundled CSS safely -->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --brand:#003366;        /* dark navy for text */
+      --brand-accent:#00AFFF; /* bright blue for CTAs */
+      --text:#1f2937;         /* gray-800 */
+      --muted:#6b7280;        /* gray-500 */
+      --bg:#ffffff;           /* white */
     }
-    
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-      overflow-x: hidden;
-    }
-    
-    /* ===== HEADER ===== */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: #ffffff;
-      border-bottom: 1px solid #f0f0f0;
-      padding: 16px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 24px;
-      font-weight: 700;
-      color: #003366;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #00AFFF 0%, #0091D5 100%);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 800;
-      font-size: 18px;
-    }
-    
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      flex: 1;
-      justify-content: center;
-    }
-    
-    nav a {
-      color: #666666;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-    
-    nav a:hover {
-      color: #00AFFF;
-    }
-    
-    .nav-dropdown {
-      position: relative;
-    }
-    
-    .nav-dropdown::after {
-      content: '▼';
-      font-size: 10px;
-      margin-left: 6px;
-      color: #666666;
-    }
-    
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    
-    .globe-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #f0f0f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      color: #666666;
-      font-size: 16px;
-    }
-    
-    .globe-icon:hover {
-      background: #e0e0e0;
-    }
-    
-    .btn-stake {
-      background: linear-gradient(135deg, #00AFFF 0%, #0091D5 100%);
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .btn-stake:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0, 175, 255, 0.3);
-    }
-    
-    /* ===== NOTIFICATION BANNER ===== */
-    .notification-banner {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background: #f8f9fa;
-      padding: 12px 40px;
-      text-align: center;
-      font-size: 13px;
-      color: #999999;
-      border-bottom: 1px solid #f0f0f0;
-      z-index: 999;
-    }
-    
-    /* ===== MAIN CONTENT ===== */
-    main {
-      margin-top: 130px;
-      padding: 60px 40px;
-      min-height: calc(100vh - 130px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .container {
-      max-width: 1400px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    
-    /* ===== LEFT SECTION ===== */
-    .left-section {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    
-    .feature-tags {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 16px;
-    }
-    
-    .feature-tag {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #00AFFF;
-    }
-    
-    .feature-tag-icon {
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-    }
-    
-    h1 {
-      font-size: 72px;
-      font-weight: 800;
-      color: #003366;
-      line-height: 1.2;
-      margin: 0;
-    }
-    
-    .subtitle {
-      font-size: 18px;
-      color: #666666;
-      line-height: 1.6;
-      max-width: 500px;
-    }
-    
-    .cta-buttons {
-      display: flex;
-      gap: 16px;
-      margin-top: 24px;
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, #003366 0%, #001a33 100%);
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 160px;
-      justify-content: center;
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px rgba(0, 51, 102, 0.3);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      color: #003366;
-      border: 2px solid #003366;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 160px;
-      justify-content: center;
-    }
-    
-    .btn-secondary:hover {
-      background: #f8f9fa;
-      transform: translateY(-3px);
-    }
-    
-    .arrow {
-      font-size: 16px;
-    }
-    
-    /* ===== RIGHT SECTION (3D ILLUSTRATION) ===== */
-    .right-section {
-      position: relative;
-      height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .illustration {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .flame-shape {
-      position: absolute;
-      width: 300px;
-      height: 350px;
-      background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 50%, #00AFFF 100%);
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      animation: float 6s ease-in-out infinite;
-      filter: drop-shadow(0 20px 40px rgba(0, 175, 255, 0.2));
-    }
-    
-    .flame-shape::before {
-      content: '';
-      position: absolute;
-      width: 200px;
-      height: 250px;
-      background: linear-gradient(135deg, transparent 0%, #00AFFF 100%);
-      border-radius: 50% 50% 50% 0;
-      top: 30px;
-      left: 50px;
-      transform: rotate(45deg);
-    }
-    
-    .floating-elements {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .star {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: #FFD700;
-      border-radius: 50%;
-      animation: twinkle 3s ease-in-out infinite;
-    }
-    
-    .star-1 {
-      top: 80px;
-      right: 120px;
-      animation-delay: 0s;
-    }
-    
-    .star-2 {
-      top: 200px;
-      right: 60px;
-      width: 8px;
-      height: 8px;
-      animation-delay: 1s;
-    }
-    
-    .paper-plane {
-      position: absolute;
-      top: 150px;
-      right: 80px;
-      font-size: 32px;
-      animation: fly 4s ease-in-out infinite;
-    }
-    
-    .smiley {
-      position: absolute;
-      bottom: 80px;
-      left: 60px;
-      font-size: 48px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-    
-    .chat-widget {
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: white;
-      border: 2px solid #f0f0f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      overflow: hidden;
-    }
-    
-    .chat-widget:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .chat-avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #FF6B9D 0%, #FFA500 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 28px;
-    }
-    
-    /* ===== SEPARATOR ===== */
-    .separator {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, #00AFFF 50%, transparent 100%);
-      border-radius: 50%;
-    }
-    
-    /* ===== ANIMATIONS ===== */
-    @keyframes float {
-      0%, 100% {
-        transform: rotate(-45deg) translateY(0px);
-      }
-      50% {
-        transform: rotate(-45deg) translateY(-20px);
-      }
-    }
-    
-    @keyframes twinkle {
-      0%, 100% {
-        opacity: 0.3;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.2);
-      }
-    }
-    
-    @keyframes fly {
-      0%, 100% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateX(40px) translateY(-20px) rotate(15deg);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-15px);
-      }
-    }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      h1 {
-        font-size: 48px;
-      }
-      
-      .right-section {
-        height: 400px;
-      }
-      
-      nav {
-        gap: 20px;
-      }
-      
-      nav a {
-        font-size: 13px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        padding: 12px 20px;
-      }
-      
-      nav {
-        display: none;
-      }
-      
-      .header-right {
-        gap: 12px;
-      }
-      
-      main {
-        margin-top: 100px;
-        padding: 40px 20px;
-      }
-      
-      .container {
-        gap: 30px;
-      }
-      
-      h1 {
-        font-size: 36px;
-      }
-      
-      .subtitle {
-        font-size: 16px;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-      }
-      
-      .btn-primary, .btn-secondary {
-        width: 100%;
-      }
-      
-      .right-section {
-        height: 300px;
-      }
-      
-      .flame-shape {
-        width: 200px;
-        height: 250px;
-      }
-      
-      .notification-banner {
-        padding: 10px 20px;
-        font-size: 12px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      header {
-        padding: 10px 16px;
-      }
-      
-      .logo {
-        font-size: 18px;
-      }
-      
-      .logo-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
-      }
-      
-      .btn-stake {
-        padding: 8px 16px;
-        font-size: 12px;
-      }
-      
-      main {
-        margin-top: 90px;
-        padding: 30px 16px;
-      }
-      
-      h1 {
-        font-size: 28px;
-      }
-      
-      .feature-tags {
-        gap: 12px;
-      }
-      
-      .feature-tag {
-        font-size: 12px;
-      }
-      
-      .subtitle {
-        font-size: 14px;
-      }
-      
-      .cta-buttons {
-        gap: 12px;
-      }
-      
-      .btn-primary, .btn-secondary {
-        padding: 12px 20px;
-        font-size: 13px;
-      }
+    *{box-sizing:border-box}
+    html,body{height:100%;background:var(--bg);color:var(--text);font-family:Roboto, Arial, Helvetica, sans-serif}
+
+    /* Container */
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #e5e7eb}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--brand)}
+    .brand-text{font-weight:700;font-size:22px;letter-spacing:.2px}
+    .nav{display:flex;gap:28px;align-items:center}
+    .nav a{color:#111827;text-decoration:none;font-size:14px}
+    .nav a:hover{color:var(--brand-accent)}
+    .nav .more{position:relative;padding-right:14px}
+    .nav .more:after{content:"";position:absolute;right:0;top:50%;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #9ca3af;transform:translateY(-30%)}
+    .lang{display:flex;align-items:center;gap:8px;color:#374151}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid #d1e9ff;background:var(--brand-accent);color:#fff;font-weight:600}
+    .btn.secondary{background:#ebf6ff;color:var(--brand);border-color:#cfeaff}
+
+    /* Notification banner */
+    .notice{margin-top:6px;text-align:center;color:#9ca3af;font-size:13px}
+
+    /* Hero */
+    .hero{padding:56px 0 24px}
+    .hero-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+    .tags{display:flex;gap:18px;color:#2563eb;font-size:13px;align-items:center}
+    .tag{display:flex;gap:6px;align-items:center;color:#2563eb}
+    .title{margin-top:14px;font-size:64px;line-height:1.05;font-weight:800;color:var(--brand);letter-spacing:.2px}
+    .subtitle{margin-top:14px;color:#6b7280}
+    .actions{margin-top:22px;display:flex;gap:14px}
+    .cta{background:var(--brand-accent);color:#fff;border:none;border-radius:12px;padding:14px 22px;font-weight:700;display:inline-flex;align-items:center;gap:8px}
+    .cta.ghost{background:#eef6ff;color:#0b3a66;border:1px solid #bfe4ff}
+
+    /* Right visual */
+    .visual{position:relative;min-height:360px;display:flex;align-items:center;justify-content:center}
+    .flame{width:360px;height:auto}
+    .orbit{position:absolute;inset:0;pointer-events:none}
+    .orbit svg{position:absolute;inset:auto;left:50%;top:50%;transform:translate(-50%,-50%)}
+    .emoji{position:absolute;right:64px;bottom:20px;background:#fff;border-radius:50%;box-shadow:0 8px 30px rgba(0,0,0,.15);width:44px;height:44px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .emoji img{width:100%;height:100%;object-fit:cover}
+
+    /* Divider curve */
+    .divider{margin:56px auto 24px;max-width:980px;height:24px}
+    .divider svg{width:100%;height:100%}
+
+    /* Inline icons */
+    .ico{width:16px;height:16px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-wrap{grid-template-columns:1fr}
+      .visual{order:-1}
+      .title{font-size:44px}
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <a href="#" class="logo">
-      <div class="logo-icon">🔥</div>
-      <span>HTX</span>
-    </a>
-    
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#advantages">Advantages</a>
-      <a href="#how-to-start">How to Start</a>
-      <a href="#plans">Plans</a>
-      <a href="#more" class="nav-dropdown">More</a>
-    </nav>
-    
-    <div class="header-right">
-      <div class="globe-icon">🌐</div>
-      <button class="btn-stake">Stake Now</button>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="HTX Home">
+        <!-- Inline SVG flame-like mark (no external asset) -->
+        <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="#0ea5e9"/>
+              <stop offset="1" stop-color="#003366"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#g1)" d="M34 4c4 10-4 12-4 18 0 6 8 8 8 18 0 10-8 16-16 16S6 48 6 38c0-8 6-12 10-16 6-6 6-14 18-18Z"/>
+        </svg>
+        <span class="brand-text">HTX</span>
+      </a>
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="#">Home</a>
+        <a href="#">Advantages</a>
+        <a href="#">How to Start</a>
+        <a href="#">Plans</a>
+        <a class="more" href="#">More</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px">
+        <!-- simple globe icon -->
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <a class="btn" href="#stake">Stake Now</a>
+      </div>
     </div>
+    <div class="notice">Congratulations +50***47 Withdrawal 5012.10 USDT</div>
   </header>
-  
-  <!-- NOTIFICATION BANNER -->
-  <div class="notification-banner">
-    Congratulations +50***47 Withdrawal 5012.10 USDT
-  </div>
-  
-  <!-- MAIN CONTENT -->
-  <main>
-    <div class="container">
-      <!-- LEFT SECTION -->
-      <div class="left-section">
-        <div class="feature-tags">
-          <div class="feature-tag">
-            <div class="feature-tag-icon">📈</div>
+
+  <main class="hero">
+    <div class="container hero-wrap">
+      <section>
+        <div class="tags" aria-label="Advantages">
+          <div class="tag">
+            <!-- chart up icon -->
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 13l3-3 4 4 6-6"/></svg>
             <span>High ROI</span>
           </div>
-          <div class="feature-tag">
-            <div class="feature-tag-icon">⭐</div>
+          <div class="tag">
+            <!-- star icon -->
+            <svg class="ico" viewBox="0 0 24 24" fill="#2563eb" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.5-5.3 4.6 1.7 6.7L12 16.9 5.6 20.4 7.3 13.6 2 9.1l7.1-.5L12 2z"/></svg>
             <span>Simple</span>
           </div>
-          <div class="feature-tag">
-            <div class="feature-tag-icon">🛡️</div>
+          <div class="tag">
+            <!-- shield icon -->
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>Secure</span>
           </div>
         </div>
-        
-        <h1>Trade Crypto<br>Only on HTX</h1>
-        
+        <h1 class="title">Trade Crypto<br/>Only on HTX</h1>
         <p class="subtitle">HTX - Register, trade, and earn unlimited USDT.</p>
-        
-        <div class="cta-buttons">
-          <button class="btn-primary">
-            Get Started
-            <span class="arrow">→</span>
+        <div class="actions">
+          <button class="cta">Get Started
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </button>
-          <button class="btn-secondary">
-            <span class="arrow">⬇</span>
-            App
+          <button class="cta ghost">App
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0b3a66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
           </button>
         </div>
-      </div>
-      
-      <!-- RIGHT SECTION (3D ILLUSTRATION) -->
-      <div class="right-section">
-        <div class="illustration">
-          <div class="flame-shape"></div>
-          
-          <div class="floating-elements">
-            <div class="star star-1"></div>
-            <div class="star star-2"></div>
-            <div class="paper-plane">✈️</div>
-            <div class="smiley">😊</div>
-            <div class="chat-widget">
-              <div class="chat-avatar">👩</div>
-            </div>
-          </div>
+      </section>
+
+      <section class="visual" aria-label="Brand Visual">
+        <!-- Flame-like visual using inline SVG to avoid external images -->
+        <svg class="flame" viewBox="0 0 200 260" role="img" aria-label="HTX logo">
+          <defs>
+            <linearGradient id="lgA" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="#00AFFF"/>
+              <stop offset="1" stop-color="#003366"/>
+            </linearGradient>
+            <linearGradient id="lgB" x1="0" x2="1" y1="1" y2="0">
+              <stop offset="0" stop-color="#0b3a66"/>
+              <stop offset="1" stop-color="#5aaee6"/>
+            </linearGradient>
+          </defs>
+          <path d="M110 10c12 32-16 40-16 66s30 38 30 84-34 78-74 78S8 212 8 166c0-34 26-54 40-70 22-24 24-62 62-86Z" fill="url(#lgB)"/>
+          <path d="M140 24c10 26-14 34-14 54s24 31 24 70-28 62-54 62-46-18-46-40 14-38 26-52c18-20 20-50 64-94Z" fill="url(#lgA)" opacity=".9"/>
+        </svg>
+        <!-- Orbits -->
+        <div class="orbit">
+          <svg width="360" height="220" viewBox="0 0 360 220" aria-hidden="true">
+            <path d="M10 110c60-60 200-60 280 0s-40 100-140 80" fill="none" stroke="#dbeafe" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
-        
-        <div class="separator"></div>
-      </div>
+        <!-- Chat avatar using local image -->
+        <div class="emoji" title="Support">
+          <img src="wallet/TUTdvmr7qKA2nCMcmFrtbZZSgm5P6wetpe.jpeg" alt="Support" />
+        </div>
+      </section>
+    </div>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 800 40" preserveAspectRatio="none">
+        <path d="M0 30 C 200 10, 600 10, 800 30" fill="none" stroke="#dbeafe" stroke-width="2"/>
+      </svg>
     </div>
   </main>
-  
-  <!-- Vue.js & Vite Application Scripts -->
+
+  <!-- Link ALL local JS assets; strictly local, no external URLs. -->
   <script type="module" src="assets/index-DnneLZHr.js"></script>
   <script type="module" src="assets/index-DtYxbbHg.js"></script>
   <script type="module" src="assets/index-bJ8WzqCg.js"></script>
-  
-  <!-- Staking Module -->
   <script type="module" src="assets/useStaking-C6BMkyt_.js"></script>
-  
-  <!-- Closure Panel Component -->
   <script type="module" src="assets/BaseClosurePanel.vue_vue_type_script_setup_true_lang-Du9_Po9R.js"></script>
-  
-  <!-- Certik Integration -->
   <script type="module" src="assets/certik--iW1oFd7.js"></script>
-  
-  <!-- Route Blocking -->
   <script type="module" src="assets/route-block-B_A1xBdJ.js"></script>
-  
-  <!-- Application Initialization -->
-  <script>
-    // Initialize Telegram Web App
-    if (window.Telegram && window.Telegram.WebApp) {
-      const tg = window.Telegram.WebApp;
-      tg.ready();
-      tg.expand();
-      console.log('✅ Telegram Web App initialized');
-    }
-    
-    // Initialize Analytics
-    if (window.ka) {
-      window.ka('page');
-      console.log('✅ Kwai Analytics initialized');
-    }
-    
-    if (window.uwt) {
-      window.uwt.track('page_load');
-      console.log('✅ UWT Tracking initialized');
-    }
-    
-    if (window.beacon) {
-      console.log('✅ Beacon tracking initialized');
-    }
-    
-    // Log initialization
-    console.log('🚀 HTX Crypto v2 - Design Synchronized');
-    console.log('📊 All modules loaded and ready');
-    
-    // Button interactions
-    document.addEventListener('DOMContentLoaded', function() {
-      const btnPrimary = document.querySelector('.btn-primary');
-      const btnSecondary = document.querySelector('.btn-secondary');
-      const btnStake = document.querySelector('.btn-stake');
-      const chatWidget = document.querySelector('.chat-widget');
-      
-      if (btnPrimary) {
-        btnPrimary.addEventListener('click', function() {
-          console.log('Get Started clicked');
-          if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.sendData('action=get_started');
-          }
-        });
-      }
-      
-      if (btnSecondary) {
-        btnSecondary.addEventListener('click', function() {
-          console.log('Download App clicked');
-          if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.sendData('action=download_app');
-          }
-        });
-      }
-      
-      if (btnStake) {
-        btnStake.addEventListener('click', function() {
-          console.log('Stake Now clicked');
-          if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.sendData('action=stake_now');
-          }
-        });
-      }
-      
-      if (chatWidget) {
-        chatWidget.addEventListener('click', function() {
-          console.log('Chat widget clicked');
-          alert('Chat support coming soon!');
-        });
-      }
-    });
-  </script>
+
+  <!-- Local analytics/tracking files (if needed by your environment) -->
+  <script src="scevent.min.js"></script>
+  <script src="uwt.js"></script>
+  <script src="beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"></script>
 </body>
 </html>
