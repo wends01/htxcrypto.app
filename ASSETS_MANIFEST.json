@@ -1,0 +1,273 @@
+{
+  "version": "2.0.0",
+  "name": "HTX Crypto",
+  "description": "Staking & Trading Platform for Telegram",
+  "lastUpdated": "2024-12-09T15:45:30+01:00",
+  "framework": {
+    "name": "Vue.js",
+    "bundler": "Vite",
+    "previousFramework": "Next.js (deprecated in v2)"
+  },
+  "assets": {
+    "stylesheets": [
+      {
+        "name": "Google Fonts",
+        "file": "css2",
+        "size": "33 KB",
+        "type": "external",
+        "purpose": "Typography (Roboto, etc.)",
+        "status": "✅ linked"
+      },
+      {
+        "name": "Default Styles",
+        "file": "assets/default-CWwjCK04.css",
+        "size": "9.8 KB",
+        "type": "vite-compiled",
+        "purpose": "Base styles and reset",
+        "status": "✅ linked"
+      },
+      {
+        "name": "Index Main Styles",
+        "file": "assets/index-C0qTE-sG.css",
+        "size": "379 KB",
+        "type": "vite-compiled",
+        "purpose": "Primary application styles",
+        "status": "✅ linked"
+      },
+      {
+        "name": "Index Addon Styles",
+        "file": "assets/index-CjzQ1CdB.css",
+        "size": "6.2 KB",
+        "type": "vite-compiled",
+        "purpose": "Additional component styles",
+        "status": "✅ linked"
+      },
+      {
+        "name": "Index Complete Styles",
+        "file": "assets/index-is9UznB4.css",
+        "size": "5.6 MB",
+        "type": "vite-compiled",
+        "purpose": "Complete stylesheet bundle",
+        "status": "✅ linked"
+      }
+    ],
+    "scripts": [
+      {
+        "name": "Index Main Module",
+        "file": "assets/index-DnneLZHr.js",
+        "size": "18 KB",
+        "type": "es-module",
+        "purpose": "Main application entry point",
+        "dependencies": ["Vue.js", "Vite"],
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Index App Bundle",
+        "file": "assets/index-DtYxbbHg.js",
+        "size": "1.6 MB",
+        "type": "es-module",
+        "purpose": "Application bundle with all components",
+        "dependencies": ["Vue.js", "Vite"],
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Index Components",
+        "file": "assets/index-bJ8WzqCg.js",
+        "size": "1.1 MB",
+        "type": "es-module",
+        "purpose": "Vue components library",
+        "dependencies": ["Vue.js"],
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Staking Module",
+        "file": "assets/useStaking-C6BMkyt_.js",
+        "size": "14 KB",
+        "type": "es-module",
+        "purpose": "Staking logic and composables",
+        "dependencies": ["Vue.js", "Composables API"],
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Closure Panel Component",
+        "file": "assets/BaseClosurePanel.vue_vue_type_script_setup_true_lang-Du9_Po9R.js",
+        "size": "5.6 KB",
+        "type": "es-module",
+        "purpose": "Base closure panel component",
+        "dependencies": ["Vue.js", "Script Setup"],
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Certik Integration",
+        "file": "assets/certik--iW1oFd7.js",
+        "size": "5.2 KB",
+        "type": "es-module",
+        "purpose": "Certik security audit integration",
+        "dependencies": ["Certik API"],
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Route Blocking",
+        "file": "assets/route-block-B_A1xBdJ.js",
+        "size": "27 bytes",
+        "type": "es-module",
+        "purpose": "Route protection and blocking",
+        "dependencies": ["Vue Router"],
+        "status": "✅ loaded"
+      }
+    ],
+    "external": [
+      {
+        "name": "Telegram Web App API",
+        "url": "https://telegram.org/js/telegram-web-app.js",
+        "purpose": "Telegram bot integration",
+        "required": true,
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Scevent Analytics",
+        "file": "scevent.min.js",
+        "size": "58.5 KB",
+        "purpose": "User analytics and tracking",
+        "required": false,
+        "status": "✅ loaded"
+      },
+      {
+        "name": "UWT Tracking",
+        "file": "uwt.js",
+        "size": "55.7 KB",
+        "purpose": "Advanced tracking and attribution",
+        "required": false,
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Beacon Tracking",
+        "file": "beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+        "purpose": "Beacon-based tracking",
+        "required": false,
+        "status": "✅ loaded"
+      },
+      {
+        "name": "Same.new Injection",
+        "url": "https://same.new/inject.js",
+        "purpose": "Same.new service injection",
+        "required": false,
+        "status": "✅ loaded"
+      }
+    ],
+    "resources": [
+      {
+        "name": "Wallet Image",
+        "file": "wallet/TUTdvmr7qKA2nCMcmFrtbZZSgm5P6wetpe.jpeg",
+        "type": "image",
+        "purpose": "Wallet address visualization",
+        "status": "✅ available"
+      },
+      {
+        "name": "Wallet Configuration",
+        "file": "wallet/wallet.txt",
+        "type": "config",
+        "purpose": "Wallet settings and metadata",
+        "status": "✅ available"
+      },
+      {
+        "name": "API Log",
+        "file": "api_log.json",
+        "type": "log",
+        "purpose": "API interaction logs",
+        "status": "✅ available"
+      }
+    ]
+  },
+  "initialization": {
+    "telegram": {
+      "enabled": true,
+      "script": "https://telegram.org/js/telegram-web-app.js",
+      "methods": ["ready()", "expand()"],
+      "status": "✅ configured"
+    },
+    "analytics": {
+      "kwai": {
+        "enabled": true,
+        "method": "window.ka('page')",
+        "status": "✅ configured"
+      },
+      "uwt": {
+        "enabled": true,
+        "method": "window.uwt.track('page_load')",
+        "status": "✅ configured"
+      },
+      "beacon": {
+        "enabled": true,
+        "method": "window.beacon",
+        "status": "✅ configured"
+      }
+    },
+    "ui": {
+      "loadingState": true,
+      "spinner": true,
+      "autoRemove": true,
+      "status": "✅ configured"
+    }
+  },
+  "statistics": {
+    "totalAssets": 18,
+    "stylesheets": 5,
+    "scripts": 7,
+    "external": 5,
+    "resources": 3,
+    "totalSize": {
+      "css": "5.9 MB",
+      "js": "2.8 MB",
+      "external": "114 KB",
+      "total": "8.8 MB"
+    }
+  },
+  "optimization": {
+    "recommendations": [
+      {
+        "priority": "high",
+        "issue": "Large CSS bundle (5.6 MB)",
+        "solution": "Implement CSS code splitting and minification",
+        "estimatedSavings": "60-70%"
+      },
+      {
+        "priority": "high",
+        "issue": "Large JS bundles (1.6 MB + 1.1 MB)",
+        "solution": "Implement route-based code splitting",
+        "estimatedSavings": "40-50%"
+      },
+      {
+        "priority": "medium",
+        "issue": "No service worker caching",
+        "solution": "Implement PWA with service worker",
+        "estimatedBenefit": "Faster repeat visits"
+      },
+      {
+        "priority": "medium",
+        "issue": "No image optimization",
+        "solution": "Convert to WebP and add srcset",
+        "estimatedSavings": "30-40%"
+      },
+      {
+        "priority": "low",
+        "issue": "Multiple analytics scripts",
+        "solution": "Consolidate or lazy-load analytics",
+        "estimatedSavings": "10-15%"
+      }
+    ]
+  },
+  "deployment": {
+    "version": "v2",
+    "date": "2024-12-09",
+    "gitTag": "v2",
+    "branch": "main",
+    "status": "✅ production-ready"
+  },
+  "notes": {
+    "migration": "Migrated from Next.js to Vue.js + Vite for better performance in Telegram Web App environment",
+    "breaking_changes": "Next.js specific features are no longer available",
+    "compatibility": "Fully compatible with Telegram Bot API",
+    "support": "Vue.js 3.x, Vite 4.x+"
+  }
+}
