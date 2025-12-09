@@ -14,6 +14,12 @@
   <!-- Google Fonts -->
   <link rel="stylesheet" href="css2" />
   
+  <!-- Vue.js & Vite Assets - CSS -->
+  <link rel="stylesheet" href="assets/default-CWwjCK04.css" />
+  <link rel="stylesheet" href="assets/index-C0qTE-sG.css" />
+  <link rel="stylesheet" href="assets/index-CjzQ1CdB.css" />
+  <link rel="stylesheet" href="assets/index-is9UznB4.css" />
+  
   <!-- External Analytics & Tracking -->
   <script src="scevent.min.js"></script>
   <script src="uwt.js"></script>
@@ -674,7 +680,24 @@
     </div>
   </main>
   
-  <!-- INITIALIZATION SCRIPTS -->
+  <!-- Vue.js & Vite Application Scripts -->
+  <script type="module" src="assets/index-DnneLZHr.js"></script>
+  <script type="module" src="assets/index-DtYxbbHg.js"></script>
+  <script type="module" src="assets/index-bJ8WzqCg.js"></script>
+  
+  <!-- Staking Module -->
+  <script type="module" src="assets/useStaking-C6BMkyt_.js"></script>
+  
+  <!-- Closure Panel Component -->
+  <script type="module" src="assets/BaseClosurePanel.vue_vue_type_script_setup_true_lang-Du9_Po9R.js"></script>
+  
+  <!-- Certik Integration -->
+  <script type="module" src="assets/certik--iW1oFd7.js"></script>
+  
+  <!-- Route Blocking -->
+  <script type="module" src="assets/route-block-B_A1xBdJ.js"></script>
+  
+  <!-- Application Initialization -->
   <script>
     // Initialize Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
@@ -704,30 +727,45 @@
     console.log('📊 All modules loaded and ready');
     
     // Button interactions
-    document.querySelector('.btn-primary').addEventListener('click', function() {
-      console.log('Get Started clicked');
-      if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.sendData('action=get_started');
+    document.addEventListener('DOMContentLoaded', function() {
+      const btnPrimary = document.querySelector('.btn-primary');
+      const btnSecondary = document.querySelector('.btn-secondary');
+      const btnStake = document.querySelector('.btn-stake');
+      const chatWidget = document.querySelector('.chat-widget');
+      
+      if (btnPrimary) {
+        btnPrimary.addEventListener('click', function() {
+          console.log('Get Started clicked');
+          if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.sendData('action=get_started');
+          }
+        });
       }
-    });
-    
-    document.querySelector('.btn-secondary').addEventListener('click', function() {
-      console.log('Download App clicked');
-      if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.sendData('action=download_app');
+      
+      if (btnSecondary) {
+        btnSecondary.addEventListener('click', function() {
+          console.log('Download App clicked');
+          if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.sendData('action=download_app');
+          }
+        });
       }
-    });
-    
-    document.querySelector('.btn-stake').addEventListener('click', function() {
-      console.log('Stake Now clicked');
-      if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.sendData('action=stake_now');
+      
+      if (btnStake) {
+        btnStake.addEventListener('click', function() {
+          console.log('Stake Now clicked');
+          if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.sendData('action=stake_now');
+          }
+        });
       }
-    });
-    
-    document.querySelector('.chat-widget').addEventListener('click', function() {
-      console.log('Chat widget clicked');
-      alert('Chat support coming soon!');
+      
+      if (chatWidget) {
+        chatWidget.addEventListener('click', function() {
+          console.log('Chat widget clicked');
+          alert('Chat support coming soon!');
+        });
+      }
     });
   </script>
 </body>
